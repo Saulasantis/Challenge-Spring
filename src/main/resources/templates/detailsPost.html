@@ -1,0 +1,42 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>[[#{details.titulo_principal}]]</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout/template :: header"></header> 
+        
+        <h1 th:text="#{titulo.principal_h1}"></h1>
+        <h2 th:text="#{details.titulo.h2}"></h2>
+        
+        <a th:href="@{/list_of_blogs}" th:text="#{details.regresar}"></a> 
+        <br></br>
+        
+        <div>
+            <table border="1">
+                <tr>
+                    <th th:text="#{details.form_image}"></th>
+                    <th th:text="#{details.form_name}"></th>
+                    <th th:text="#{details.form_age}"></th>
+                    <th th:text="#{details.form_weight}"></th>
+                    <th th:text="#{details.form_story}"></th>
+                    <th th:text="#{details.form_associated_movies}"></th>
+                </tr>
+                <tr th:each="blogs: ${blogs}">
+                    <td><img th:attr="src=@{'image/charactersImages/'+${characters.image}}" alt="sin imagen disponible" height="100" width="100"/></td>
+                    <td th:text="${characters.name}"></td>
+                    <td th:text="${characters.age}"></td>
+                    <td th:text="${characters.weight}"></td>
+                    <td th:text="${characters.story}"></td>
+                    <td th:text="${characters.associated_movies}"></td>
+                </tr>
+            </table>            
+        </div>
+        
+        <footer th:replace="layout/template :: footer"></footer>
+           
+    </body>
+</html>-->

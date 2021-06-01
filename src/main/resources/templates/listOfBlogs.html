@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>[[#{blog.principal_title}]]</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout/template :: header"></header>
+        <h1>[[#{blog.principal_title}]]</h1>                    
+        <form>
+            <input type="text" name="txtSearch" placeholder="Search blogs by ID"/>
+            <input type="submit" name="detailsPostId" value="Search"/>                        
+        </form>
+        <br></br>
+        <a th:href="@{/posts/create}" th:text="#{blog.create}"></a>
+        <br></br>
+        <div th:if="${blog != null and !blog.empty}">
+            <table border="1">
+                <tr>
+                    <th>[[#{blog.form_ID}]]</th>
+                    <th>[[#{blog.form_title}]]</th>
+                    <th>[[#{blog.form_image}]]</th>
+                    <th>[[#{blog.form_category}]]</th>
+                    <th>[[#{blog.form_creation_date}]]</th>
+                    <th>[[#{blog.form_edit}]]</th>
+                    <th>[[#{blog.form_delete}]]</th>
+                </tr>
+                <tr th:each="blogs: ${blog}">
+                    <td th:text="${blogs.id_blog}"></td>
+                    <td th:text="${blogs.title}"></td>
+                    <td><img th:attr="src=@{'/blogsImages/'+${blogs.image}}" alt="no image available" height="100" width="100"/></td>
+                    <td th:text="${blogs.category}"></td>
+                    <td th:text="${blogs.creation_date}"></td>
+                    <td><a th:href="@{/posts/edit(id_blog=${blogs.id_blog})}" th:text="#{blog.action_edit}"></a></td>
+                    <td><a th:href="@{/posts/delete(id_blog=${blogs.id_blog})}" th:text="#{blog.action_delete}"></a></td>
+                </tr>
+            </table>
+
+            <div th:if="${blog == null or blog.empty}">
+                [[#{blog.empty_list}]]
+            </div>
+
+        </div>
+
+        <footer th:replace="layout/template :: footer"></footer>
+
+    </body>
+</html>

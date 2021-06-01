@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>[[#{create.principal_title}]]</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout/template :: header"></header> 
+
+        <h1>[[#{create.principal_title}]]</h1>
+        <a th:href="@{/posts/list}" th:text="#{create.return}"></a>  
+        <br></br>
+
+        <form th:action="@{/posts/save}" method="post" th:object="${blogs}">
+            <input type="hidden" name="id_blog" th:field="*{id_blog}"/>
+            <label for="title" th:text="#{create.form_title}"></label> 
+            <input type="text" name="title" th:field="*{title}"/>
+            <br/>
+            <label for="content" th:text="#{create.form_content}"></label> 
+            <input type="text" name="v" th:field="*{content}"/>
+            <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+            <br/>
+            <label for="image" th:text="#{create.form_image}"></label> 
+            <input type="text" name="image" th:field="*{image}"/>
+            <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+            <br/>
+            <label for="category" th:text="#{create.form_category}"></label> 
+            <input type="text" name="category" th:field="*{category}"/>
+            <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+            <br/>
+            <label for="creation_date" th:text="#{create.form_creation_date}"></label> 
+            <input type="text" name="creation_date" th:field="*{creation_date}"/>
+            <span th:if="${#fields.hasErrors('creation_date')}" th:errors="*{creation_date}"></span>
+            <br></br>
+            <input type="submit" name="save_blogs" th:value="#{create.save_blog}"/>
+        </form>
+
+        <footer th:replace="layout/template :: footer"></footer>
+    </body>
+</html>
